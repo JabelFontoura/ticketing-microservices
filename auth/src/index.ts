@@ -21,7 +21,7 @@ const startUp = async () => {
     const dbConnectionConfiguration = config.get('db.connectionString') as string;
 
     const app = express();
-    
+   
     app.set('trust proxy', true);
     app.use(json());
     app.use(
