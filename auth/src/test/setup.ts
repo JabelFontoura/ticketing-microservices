@@ -1,14 +1,15 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
-import { app } from '../app';
 
-let mongo: any;
+let mongo: MongoMemoryServer;
 
 beforeAll(async () => {
-    mongo = MongoMemoryServer.create();
+    process.env.JWT_KEY = 'jwt_test_key';
+
+    mongo = await MongoMemoryServer.create();
     const mongoUri = await mongo.getUri();
 
-    await mongoose.connect(mongoUri, { });
+    await mongoose.connect(mongoUri, {});
 });
 
 beforeEach(async () => {
@@ -23,6 +24,6 @@ afterAll(async () => {
     if (mongo) {
         await mongo.stop();
     }
-    
+
     await mongoose.connection.close();
 });
