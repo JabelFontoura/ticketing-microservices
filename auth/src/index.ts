@@ -1,7 +1,7 @@
+import { errorHandler } from '@jsftickets/common';
+import { app } from './app';
 import config from 'config';
 import mongoose from 'mongoose';
-import { app } from './app';
-import { errorHandler } from './middlewares/error-handler';
 
 const startUp = async () => {
     const serverPortConfiguration = config.get('server.port');
