@@ -1,16 +1,15 @@
-import axios from 'axios';
+import buildClient from '../api/build-client';
 
 const LandingPage = ({ currentUser }) => {
-    console.log(currentUser)
-  return <h1>Hello world</h1>;
+  return currentUser ? <h1>Hello, you are signed in!</h1> : <h1>You are not signed in!</h1>;
 };
 
-LandingPage.getInitialProps = async () => {
-  const response = await axios
-    .get('/api/users/currentUser')
-    // .catch((err) => console.log(err));
+LandingPage.getInitialProps = async (context) => {
+  const { data } = await buildClient(context)
+    .get('api/users/currentUser')
+    .catch((err) => console.log(err));
 
-  return response.data;
+  return data;
 };
 
 export default LandingPage;
