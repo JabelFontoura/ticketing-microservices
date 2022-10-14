@@ -1,11 +1,10 @@
 import { errorHandler } from '@jsftickets/common';
 import { app } from './app';
-import config from 'config';
 import mongoose from 'mongoose';
 
 const startUp = async () => {
-    const serverPortConfiguration = config.get('server.port');
-    const dbConnectionConfiguration = config.get('db.connectionString') as string;
+    const serverPortConfiguration = Number(process.env.SERVER_PORT as string);
+    const dbConnectionConfiguration = process.env.MONGO_URI as string;
     
     if (!process.env.JWT_KEY) {
         throw new Error('JWT_KEY must be defined.');

@@ -1,8 +1,0 @@
-{
-    "server": {
-      "port": 3000
-    },
-    "db": {
-      "connectionString": "mongodb://auth-mongo-srv:27017/auth"
-    }
-  }

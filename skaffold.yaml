@@ -5,11 +5,19 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local: 
+  local:
     push: false
   artifacts:
     - image: jabell/auth
       context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: jabell/tickets
+      context: tickets
       docker:
         dockerfile: Dockerfile
       sync:
