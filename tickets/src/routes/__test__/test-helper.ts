@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 
-const createTicket = (title: string, price: number) => {
+const createTicket = (title: string, price: number, cookie: string[]) => {
   return request(app)
     .post('/api/tickets')
-    .set('Cookie', global.fakeSignin())
+    .set('Cookie', cookie)
     .send({
       title,
       price,

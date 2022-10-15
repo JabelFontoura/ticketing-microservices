@@ -35,7 +35,7 @@ afterAll(async () => {
 
 global.fakeSignin = () => {
   const payload = {
-    id: 'id',
+    id: new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.com',
   };
 
